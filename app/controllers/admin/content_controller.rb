@@ -56,10 +56,10 @@ class Admin::ContentController < Admin::BaseController
     merged_article = Article.merge(params[:article_id], params[:merge_with])
     if merged_article
       flash[:notice] = ("Merge is complete!")
-      redirect_to '/admin/content/edit/#{merged_article.id}'
+      redirect_to "/admin/content/edit/#{merged_article.id}"
     else
       flash[:notice] = ("Error. Article cannot be merged.")
-      redirect_to '/admin/content/edit/#{params[:article_id]}'
+      redirect_to "/admin/content/edit/#{params[:article_id]}"
     end
   end
 
