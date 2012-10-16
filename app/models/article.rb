@@ -131,6 +131,7 @@ class Article < Content
         return false
       end
       article_1.body = article_1.body + article_2.body
+      article_1.id = nil
       merged_article = Article.create(article_1)
       Article.destroy(article_1)
       Article.destroy(article_2)
