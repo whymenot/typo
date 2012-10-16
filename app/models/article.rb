@@ -130,7 +130,8 @@ class Article < Content
       else
         return false
       end
-      merged_article = Article.create(:title => article_1.title, :author => article_1.author, :body => (article_1.body + article_2.body), :published => true)
+      article_1.body = article_1.body + article_2.body
+      merged_article = Article.create(article_1)
       Article.destroy(article_1)
       Article.destroy(article_2)
       return merged_article
