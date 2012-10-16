@@ -120,6 +120,21 @@ class Article < Content
       eval(list_function.join('.'))
     end
 
+    def merge(article_id_1, article_id_2)
+      if article_id_1 == article_id_2
+        return false
+      article_1 = Article.find(article_id_1)
+      if Article.exists?(article_id_2)
+        article_2 = Article.find(article_id_2)
+      else
+        return false
+      end
+      merged_article = Article.create(:title => article_1.title, :author => article_1.author, :body => (article_1.body + article_2.body), :published => true)
+      Article.destroy(article_1)
+      Article.destroy(article_2)
+      return merged_article
+    end
+
   end
 
   def year_url
