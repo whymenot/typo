@@ -53,7 +53,7 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def merge
-    merged_article = Article.merge(params[:article_id], params[:merge_with]
+    merged_article = Article.merge(params[:article_id], params[:merge_with])
     if merged_article
       flash[:notice] = ("Merge is complete!")
       redirect_to '/admin/content/edit/#{merged_article.id}'
