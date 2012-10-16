@@ -123,6 +123,7 @@ class Article < Content
     def merge(article_id_1, article_id_2)
       if article_id_1 == article_id_2
         return false
+      end
       article_1 = Article.find(article_id_1)
       if Article.exists?(article_id_2)
         article_2 = Article.find(article_id_2)
