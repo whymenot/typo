@@ -56,14 +56,15 @@ class Admin::ContentController < Admin::BaseController
     if not current_user.admin?
       flash[:notice] = ("Merging is only by admin")
       redirect_to "/"
-    end
-    merged_article = Article.merge(params[:article_id], params[:merge_with])
-    if merged_article
-      flash[:notice] = ("Merge is complete!")
-      redirect_to "/admin/content/edit/#{merged_article.id}"
     else
-      flash[:notice] = ("Error. Article cannot be merged.")
-      redirect_to "/admin/content/edit/#{params[:article_id]}"
+      merged_article = Article.merge(params[:article_id], params[:merge_with])
+      if merged_article
+        flash[:notice] = ("Merge is complete!")
+        redirect_to "/admin/content"
+      else
+        flash[:notice] = ("Error. Article cannot be merged.")
+        redirect_to "/admin/content/edit/#{params[:article_id]}"
+      end
     end
   end
 
