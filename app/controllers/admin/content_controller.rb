@@ -53,6 +53,10 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def merge
+    if not current_user.admin?
+      flash[:notice] = ("Merging is only by admin")
+      redirect_to "/"
+    end
     merged_article = Article.merge(params[:article_id], params[:merge_with])
     if merged_article
       flash[:notice] = ("Merge is complete!")
